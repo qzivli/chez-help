@@ -7,7 +7,7 @@ It will search symbol name in _The Scheme Programming Language (Fourth Edition)_
 It currently only works on macOS.
 
 
-## Example
+## Examples
 
 ```
 (import (help))
@@ -15,6 +15,16 @@ It currently only works on macOS.
 (help 'syntax-case)
 
 (help 'make-engine)
+```
+
+```
+> (import (help))
+> (apropos 'thread)
+interaction environment:
+  fork-thread, get-thread-id, make-thread-parameter, thread-condition?,
+  thread?, threaded?
+...
+> (help 'fork-thread)
 ```
 
 
