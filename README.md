@@ -4,7 +4,7 @@ A fake "online help" for Chez Scheme.
 
 It will search symbol name in _The Scheme Programming Language (Fourth Edition)_ and _Chez Scheme Version 9 User's Guide_, if found, it will open a web page through the default web browser.
 
-It currently only works on macOS.
+It currently only tested on macOS.
 
 
 ## Examples

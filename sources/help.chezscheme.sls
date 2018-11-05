@@ -15,7 +15,7 @@
                   [(,name1 ,name2 ,path) (guard (and (symbol? name1) (symbol? name2)))
                    (hashtable-set! ht name1 path)
                    (hashtable-set! ht name2 path)]
-                  [,other (error 'list->hashtable "invalid list" x)]))
+                  [,other (error 'nested-list->hashtable "invalid list" x)]))
               ls)
     ht)
 
@@ -40,9 +40,23 @@
            (string-append "https://cisco.github.io/ChezScheme/csug9.5/" part))]
       [,other (error 'build-url "invalid path, (should not happen)" other)]))
 
+  ;; Open url in default browser.
+  (define (open-url url)
+    (define (run cmd) (process cmd) (void))
+    (case (machine-type)
+      ;; Linux
+      [(i3le ti3le a6le ta6le) (run (format "xdg-open ~a" url))]
+      ;; macOS
+      [(i3osx ti3osx a6osx ta6osx) (run (format "open ~a" url))]
+      ;; Windows
+      [(ta6nt a6nt i3nt ti3nt) (run (format "start ~a" url))]
+      [else
+       (if (zero? (system "which xdg-open >/dev/null 2>&1"))
+           (run (format "xdg-open ~a" url))
+           (error 'help "don't known how to open a url, sorry."))]))
+
   (define (help name)
     (define url (build-url (find-path name)))
-    (process (format "open ~a" url))
-    (void))
+    (open-url url))
 
   ) ; end of library
