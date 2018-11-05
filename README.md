@@ -31,3 +31,10 @@ interaction environment:
 ## Dependencies
 
 * match https://github.com/qzivli/match
+
+
+## Install
+
+Just type `./install.ss`
+
+The shell environment variable "CHEZSCHEMELIBDIRS" should be defined.
